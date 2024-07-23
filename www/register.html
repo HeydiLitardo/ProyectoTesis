@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Registrarse</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .error {
+            border: 2px solid red;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 12px;
+            display: none;
+        }
+
+        .show-password {
+            position: relative;
+        }
+
+        .show-password input {
+            padding-right: 30px;
+        }
+
+        .show-password .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="left-side">
+            <div class="logo">
+                <img src="assets/Settings-bro.png" alt="Logo" class="logo-img" />
+                <h1>EcommerceDash</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed
+                    cursus ante dapibus diam.</p>
+                <div class="buttons">
+                    <a href="{{login_link}}" class="sign-in">Iniciar Sesión</a>
+                    <a href="{{register_link}}" class="sign-up">Registrarse</a>
+                </div>
+            </div>
+        </div>
+        <div class="right-side">
+            <h2>Registrarse</h2>
+            <p>Por favor, completa el siguiente formulario para crear una cuenta.</p>
+            <form id="registerForm">
+                <input type="text" id="first_name" placeholder="Nombres" />
+                <span id="firstNameError" class="error-message">Por favor, ingrese sus nombres.</span>
+                <input type="text" id="last_name" placeholder="Apellidos" />
+                <span id="lastNameError" class="error-message">Por favor, ingrese sus apellidos.</span>
+                <input type="text" id="company" placeholder="Nombre de Empresa" />
+                <span id="companyError" class="error-message">Por favor, ingrese el nombre de su empresa.</span>
+                <input type="email" id="email" placeholder="Correo Electrónico" />
+                <span id="emailError" class="error-message">Por favor, ingrese su correo electrónico.</span>
+                <div class="show-password">
+                    <input type="password" id="password" placeholder="Contraseña" />
+                    <span class="toggle-password" onclick="togglePasswordVisibility('password', 'eye-icon')">
+                        <svg id="eye-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                            <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"/>
+                            <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0"/>
+                        </svg>
+                    </span>
+                </div>
+                <span id="passwordError" class="error-message">Por favor, ingrese su contraseña.</span>
+                <div class="show-password">
+                    <input type="password" id="confirm_password" placeholder="Confirmar Contraseña" />
+                    <span class="toggle-password" onclick="togglePasswordVisibility('confirm_password', 'confirm-eye-icon')">
+                        <svg id="confirm-eye-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                            <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"/>
+                            <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0"/>
+                        </svg>
+                    </span>
+                </div>
+                <span id="confirmPasswordError" class="error-message">Por favor, confirme su contraseña.</span>
+                <span id="passwordMatchError" class="error-message">Las contraseñas no coinciden.</span>
+                <button type="button" id="register_button" onclick="validateRegisterForm()">Registrarse</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        function validateRegisterForm() {
+            var firstName = document.getElementById("first_name");
+            var lastName = document.getElementById("last_name");
+            var company = document.getElementById("company");
+            var email = document.getElementById("email");
+            var password = document.getElementById("password");
+            var confirmPassword = document.getElementById("confirm_password");
+            var valid = true;
+
+            if (firstName.value === "") {
+                firstName.classList.add("error");
+                document.getElementById("firstNameError").style.display = "inline";
+                valid = false;
+            } else {
+                firstName.classList.remove("error");
+                document.getElementById("firstNameError").style.display = "none";
+            }
+
+            if (lastName.value === "") {
+                lastName.classList.add("error");
+                document.getElementById("lastNameError").style.display = "inline";
+                valid = false;
+            } else {
+                lastName.classList.remove("error");
+                document.getElementById("lastNameError").style.display = "none";
+            }
+
+            if (company.value === "") {
+                company.classList.add("error");
+                document.getElementById("companyError").style.display = "inline";
+                valid = false;
+            } else {
+                company.classList.remove("error");
+                document.getElementById("companyError").style.display = "none";
+            }
+
+            if (email.value === "") {
+                email.classList.add("error");
+                document.getElementById("emailError").style.display = "inline";
+                valid = false;
+            } else {
+                email.classList.remove("error");
+                document.getElementById("emailError").style.display = "none";
+            }
+
+            if (!validateEmail(email.value)) {
+                email.classList.add("error");
+                document.getElementById("emailError").style.display = "inline";
+                valid = false;
+            } else {
+                email.classList.remove("error");
+                document.getElementById("emailError").style.display = "none";
+            }
+
+            if (password.value === "") {
+                password.classList.add("error");
+                document.getElementById("passwordError").style.display = "inline";
+                valid = false;
+            } else {
+                password.classList.remove("error");
+                document.getElementById("passwordError").style.display = "none";
+            }
+
+            if (confirmPassword.value === "") {
+                confirmPassword.classList.add("error");
+                document.getElementById("confirmPasswordError").style.display = "inline";
+                valid = false;
+            } else {
+                confirmPassword.classList.remove("error");
+                document.getElementById("confirmPasswordError").style.display = "none";
+            }
+
+            if (password.value !== confirmPassword.value) {
+                password.classList.add("error");
+                confirmPassword.classList.add("error");
+                document.getElementById("passwordMatchError").style.display = "inline";
+                valid = false;
+            } else {
+                password.classList.remove("error");
+                confirmPassword.classList.remove("error");
+                document.getElementById("passwordMatchError").style.display = "none";
+            }
+
+            if (valid) {
+                Shiny.onInputChange('register_button', Math.random());
+            }
+        }
+
+        function validateEmail(email) {
+            var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@(([^<>()[\]\.,;:\s@"]+\.)+[^<>()[\]\.,;:\s@"]{2,})$/i;
+            return re.test(String(email).toLowerCase());
+        }
+
+        function togglePasswordVisibility(passwordId, iconId) {
+            var passwordInput = document.getElementById(passwordId);
+            var eyeIcon = document.getElementById(iconId);
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                eyeIcon.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-slash" viewBox="0 0 16 16">
+                        <path d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7 7 0 0 0-2.79.588l.77.771A6 6 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755q-.247.248-.517.486z"/>
+                        <path d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829"/>
+                        <path d="M3.35 5.47q-.27.24-.518.487A13 13 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7 7 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12z"/>
+                    </svg>
+                `;
+            } else {
+                passwordInput.type = "password";
+                eyeIcon.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                        <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"/>
+                        <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0"/>
+                    </svg>
+                `;
+            }
+        }
+
+        Shiny.addCustomMessageHandler("redirect", function (message) {
+            window.location.href = message.url;
+        });
+    </script>
+</body>
+
+</html>
