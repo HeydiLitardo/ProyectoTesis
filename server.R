@@ -28,7 +28,10 @@ clean_data <- function(filepath) {
     mutate(`Fecha.y.hora` = as.POSIXct(`Fecha.y.hora`, format = "%d/%m/%Y, %I:%M:%S", tz = "UTC")) %>%
     filter(!is.na(`Fecha.y.hora`))
 
-  print(cleaned_data)
+  # Transformar los números con coma decimal a punto decimal
+  cleaned_data <- cleaned_data %>%
+    mutate(Cantidad = as.numeric(gsub(",", ".", gsub("[^0-9,]", "", Cantidad)))) %>%
+    filter(!is.na(Cantidad))
 
   return(cleaned_data)
 }
@@ -61,6 +64,7 @@ server <- function(input, output, session) {
   authenticate_user <- function(email, password) {
     query <- "SELECT * FROM users WHERE email = ? AND password = ?"
     res <- dbGetQuery(con, query, params = list(email, password))
+    print(dbGetQuery)
     print(res)
     return(nrow(res) > 0)
   }
