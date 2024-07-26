@@ -1,6 +1,6 @@
 .container {
-    background: #532b88;
-    background: linear-gradient(180deg, rgba(83, 43, 136, 1) 0%, rgba(83, 43, 136, 0.5) 100%);
+    background: #80CED7;
+    background: linear-gradient(180deg, rgba(128, 206, 215, 1) 0%, rgba(128, 206, 215, 0.5) 100%);
     width: 65%;
     display: flex;
     border-radius: 10px;
@@ -21,12 +21,12 @@
 
 .nav-link:active {
     font-weight: bold;
-    background-color: #532b88 !important;
+    background-color: #80CED7 !important;
 }
 
 .active {
     font-weight: bold;
-    background-color: #532b88 !important;
+    background-color: #80CED7 !important;
 }
 
 .left-side {
@@ -58,7 +58,7 @@
 
 .buttons a {
     background-color: white;
-    color: #532b88;
+    color: #80CED7;
     border: none;
     padding: 10px 20px;
     margin: 5px;
@@ -75,7 +75,7 @@
 
 .right-side {
     background: rgb(221, 209, 230);
-    background: radial-gradient(circle, rgba(221, 209, 230, 1) 0%, rgba(221, 209, 230, 0.5) 100%);
+    background: radial-gradient(circle, rgb(209, 223, 230) 0%, rgba(209, 223, 230, 0.5) 100%);
     padding: 18px;
     margin: 15px;
     border-radius: 18px;
@@ -130,14 +130,14 @@ form input {
 }
 
 .terms a {
-    color: #532b88;
+    color: #80CED7;
     text-decoration: none;
     margin: 0;
     padding: 0;
 }
 
 form button {
-    background-color: #532b88;
+    background-color: #80CED7;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -148,7 +148,7 @@ form button {
 }
 
 form button:hover {
-    background-color: #532b88;
+    background-color: #66a7b1;
 }
 
 .sidebar {
@@ -173,13 +173,13 @@ form button:hover {
 }
 
 .sidebar .nav-link:hover .bi {
-    color: #532b88;
+    color: #80CED7;
 }
 
 .sidebar .nav-link.active,
 .sidebar .nav-link.active .bi {
     color: #fff;
-    background-color: #532b88;
+    background-color: #80CED7;
 }
 
 .sidebar .nav-link:hover {
@@ -273,7 +273,7 @@ form button:hover {
 
 :root,
 [data-bs-theme=light] {
-    --bs-blue: #532b88;
+    --bs-blue: #80CED7;
     --bs-indigo: #6610f2;
     --bs-purple: #6f42c1;
     --bs-pink: #d63384;
@@ -296,7 +296,7 @@ form button:hover {
     --bs-gray-700: #495057;
     --bs-gray-800: #343a40;
     --bs-gray-900: #212529;
-    --bs-primary: #532b88;
+    --bs-primary: #80CED7;
     --bs-secondary: #6c757d;
     --bs-success: #198754;
     --bs-info: #0dcaf0;
@@ -304,7 +304,7 @@ form button:hover {
     --bs-danger: #dc3545;
     --bs-light: #f8f9fa;
     --bs-dark: #212529;
-    --bs-primary-rgb: 83, 43, 136;
+    --bs-primary-rgb: 128, 206, 215;
     --bs-secondary-rgb: 108, 117, 125;
     --bs-success-rgb: 25, 135, 84;
     --bs-info-rgb: 13, 202, 240;
@@ -360,11 +360,11 @@ form button:hover {
     --bs-tertiary-bg: #f8f9fa;
     --bs-tertiary-bg-rgb: 248, 249, 250;
     --bs-heading-color: inherit;
-    --bs-link-color: #532b88;
-    --bs-link-color-rgb: 91, 14, 145;
+    --bs-link-color: #80CED7;
+    --bs-link-color-rgb: 128, 206, 215;
     --bs-link-decoration: underline;
-    --bs-link-hover-color: #532b88;
-    --bs-link-hover-color-rgb: 10, 88, 202;
+    --bs-link-hover-color: #80CED7;
+    --bs-link-hover-color-rgb: 128, 206, 215;
     --bs-code-color: #d63384;
     --bs-highlight-color: #212529;
     --bs-highlight-bg: #fff3cd;

@@ -22,12 +22,17 @@ register_page <- htmlTemplate(
   register_link = route_link("register")
 )
 
-index_page <- htmlTemplate(
-  "www/index.html",
-  login_link = route_link("login"),
-  register_link = route_link("register"),
-  appTitle = "Dashboard App",
-  appVersion = "1.0.0",
+update_user_page <- htmlTemplate(
+  "www/update_user.html",
+  updateButton = actionButton("update_user_button", "Actualizar",
+    icon = icon("save"),
+    style = "color: white; background-color: #007EA7; border-color: #007EA7; width: 100%; height: 36px; font-size: 15px;",
+    onclick = "validateUpdateForm();"
+  ),
+)
+
+main_home <- htmlTemplate(
+  "www/home.html",
   selectYear = selectInput(
     "selected_year", NULL,
     choices = getYearChoices(consts$data_first_day, consts$data_last_day),
@@ -57,7 +62,16 @@ index_page <- htmlTemplate(
   pie_chart = pie_chart$ui("summary_pie_chart"),
   line_chart = line_chart$ui("summary_line_chart"),
   vertical_chart = vertical_chart$ui("summary_vertical_chart"),
-  contents = tableOutput("contents")
+)
+
+index_page <- htmlTemplate(
+  "www/index.html",
+  login_link = route_link("login"),
+  register_link = route_link("register"),
+  appTitle = "Dashboard App",
+  appVersion = "1.0.0",
+  main_home = main_home,
+  update_user_page = update_user_page,
 )
 
 # Definir el enrutador
